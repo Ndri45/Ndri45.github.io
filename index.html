@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Drumkit</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-image: linear-gradient(to bottom, rgb(102, 102, 102), black);
+      width: 100vw;
+      height: 100vh;
+    }
+
+    div {
+      display: flex;
+      justify-content: center;
+    }
+
+    img {
+      filter: drop-shadow(0px 5px 10px gray);
+    }
+
+    img.kick-left {
+      width: 200px;
+      position: absolute;
+      bottom: 0;
+      left: 210px;
+    }
+
+    img.kick-right {
+      width: 200px;
+      position: absolute;
+      bottom: 0;
+      right: 210px;
+    }
+
+    img.boom {
+      width: 170px;
+      position: absolute;
+      bottom: 80px;
+      right: 40px;
+    }
+
+    img.snare {
+      width: 160px;
+      position: absolute;
+      bottom: 150px;
+    }
+
+    img.tom1 {
+      width: 140px;
+      position: absolute;
+      bottom: 270px;
+    }
+
+    img.tom2 {
+      width: 140px;
+      position: absolute;
+      bottom: 230px;
+      left: 200px
+    }
+
+    img.tom3 {
+      width: 140px;
+      position: absolute;
+      bottom: 230px;
+      right: 200px
+    }
+
+    img.ride-left {
+      width: 170px;
+      position: absolute;
+      bottom: 250px;
+      left: 20px;
+    }
+
+    img.ride-right {
+      width: 170px;
+      position: absolute;
+      bottom: 250px;
+      right: 20px;
+    }
+
+    img.openhihat {
+      width: 140px;
+      position: absolute;
+      left: 50px;
+      bottom: 20px
+    }
+
+    img.closehihat {
+      width: 140px;
+      position: absolute;
+      left: 90px;
+      bottom: 130px;
+    }
+
+    @media only screen and (min-width: 900px) {
+      div {
+        position: relative;
+        width: 825px;
+        height: 400px;
+        display: flex;
+        justify-content: center;
+        top: 100px;
+        margin: auto;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div>
+    <img src="drums/kick.png" alt="kick" onclick="makeSound(event)" class="kick-left">
+    <img src="drums/kick.png" alt="kick" onclick="makeSound(event)" class="kick-right">
+    <img src="drums/boom.png" alt="boom" onclick="makeSound(event)" class="boom">
+    <img src="drums/snare.png" alt="snare" onclick="makeSound(event)" class="snare">
+    <img src="drums/tom.png" alt="tom" onclick="makeSound(event)" class="tom1">
+    <img src="drums/tom.png" alt="tom" onclick="makeSound(event)" class="tom2">
+    <img src="drums/tom.png" alt="tom" onclick="makeSound(event)" class="tom3">
+    <img src="drums/openhihat.png" alt="openhihat" onclick="makeSound(event)" class="openhihat">
+    <img src="drums/closehihat.png" alt="closehihat" onclick="makeSound(event)" class="closehihat">
+    <img src="drums/ride.png" alt="ride" onclick="makeSound(event)" class="ride-left">
+    <img src="drums/ride.png" alt="ride" onclick="makeSound(event)" class="ride-right">
+  </div>
+
+  <audio src=" sounds/kick.wav" id="kick"></audio>
+  <audio src=" sounds/snare.wav" id="snare"></audio>
+  <audio src=" sounds/boom.wav" id="boom"></audio>
+  <audio src=" sounds/ride.wav" id="ride"></audio>
+  <audio src=" sounds/tom.wav" id="tom"></audio>
+  <audio src=" sounds/closehihat.wav" id="closehihat"></audio>
+  <audio src=" sounds/openhihat.wav" id="openhihat"></audio>
+
+  <script>
+    function makeSound(e) {
+      const audio = document.getElementById(e.target.alt);
+      audio.currentTime = 0;
+      audio.play();
+      console.log(e);
+    }
+  </script>
+
+</body>
+
+</html>
