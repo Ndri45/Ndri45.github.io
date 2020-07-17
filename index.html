@@ -119,17 +119,17 @@
 <body>
 
   <div>
-    <img src="drums/kick.png" alt="kick" onclick="makeSound(event)" class="kick-left">
-    <img src="drums/kick.png" alt="kick" onclick="makeSound(event)" class="kick-right">
-    <img src="drums/boom.png" alt="boom" onclick="makeSound(event)" class="boom">
-    <img src="drums/snare.png" alt="snare" onclick="makeSound(event)" class="snare">
-    <img src="drums/tom.png" alt="tom" onclick="makeSound(event)" class="tom1">
-    <img src="drums/tom.png" alt="tom" onclick="makeSound(event)" class="tom2">
-    <img src="drums/tom.png" alt="tom" onclick="makeSound(event)" class="tom3">
-    <img src="drums/openhihat.png" alt="openhihat" onclick="makeSound(event)" class="openhihat">
-    <img src="drums/closehihat.png" alt="closehihat" onclick="makeSound(event)" class="closehihat">
-    <img src="drums/ride.png" alt="ride" onclick="makeSound(event)" class="ride-left">
-    <img src="drums/ride.png" alt="ride" onclick="makeSound(event)" class="ride-right">
+    <img src="drums/kick.png" alt="kick" class="kick-left">
+    <img src="drums/kick.png" alt="kick" class="kick-right">
+    <img src="drums/boom.png" alt="boom" class="boom">
+    <img src="drums/snare.png" alt="snare" class="snare">
+    <img src="drums/tom.png" alt="tom" class="tom1">
+    <img src="drums/tom.png" alt="tom" class="tom2">
+    <img src="drums/tom.png" alt="tom" class="tom3">
+    <img src="drums/openhihat.png" alt="openhihat" class="openhihat">
+    <img src="drums/closehihat.png" alt="closehihat" class="closehihat">
+    <img src="drums/ride.png" alt="ride" class="ride-left">
+    <img src="drums/ride.png" alt="ride" class="ride-right">
   </div>
 
   <audio src=" sounds/kick.wav" id="kick"></audio>
@@ -141,12 +141,13 @@
   <audio src=" sounds/openhihat.wav" id="openhihat"></audio>
 
   <script>
-    function makeSound(e) {
-      const audio = document.getElementById(e.target.alt);
+    function makeSound(el) {
+      const audio = document.getElementById(el);
       audio.currentTime = 0;
       audio.play();
-      console.log(e);
     }
+    const imgs = document.querySelectorAll('img');
+    imgs.forEach(e => addEventListener('click', e => makeSound(e.target.alt)));
   </script>
 
 </body>
