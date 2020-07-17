@@ -147,7 +147,7 @@
       audio.play();
     }
     const imgs = document.querySelectorAll('img');
-    imgs.forEach(e => addEventListener('click', e => makeSound(e.target.alt)));
+    imgs.forEach(e => addEventListener('touchstart', e => makeSound(e.target.alt)));
   </script>
 
 </body>
