@@ -141,13 +141,13 @@
   <audio src=" sounds/openhihat.wav" id="openhihat"></audio>
 
   <script>
-    function makeSound(el) {
-      const audio = document.getElementById(el);
+    function playSound(e) {
+      const audio = document.getElementById(e.target.alt);
+      if (!audio) return;
       audio.currentTime = 0;
       audio.play();
     }
-    const imgs = document.querySelectorAll('img');
-    imgs.forEach(e => addEventListener('touchstart', e => makeSound(e.target.alt)));
+    window.addEventListener('click', playSound);
   </script>
 
 </body>
