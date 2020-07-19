@@ -19,99 +19,87 @@
     }
 
     div {
+      position: relative;
+      width: 825px;
+      height: 400px;
       display: flex;
       justify-content: center;
+      top: 120px;
+      margin: auto;
     }
 
     img {
-      filter: drop-shadow(0px 5px 10px gray);
+      filter: drop-shadow(0px 5px 3px rgba(177, 177, 177, 0.486));
+      position: absolute;
+      transition: 0.05s;
     }
 
     img.kick-left {
       width: 200px;
-      position: absolute;
       bottom: 0;
-      left: 210px;
+      left: 200px;
     }
 
     img.kick-right {
       width: 200px;
-      position: absolute;
       bottom: 0;
-      right: 210px;
+      right: 200px;
     }
 
-    img.boom {
+    img.floor {
       width: 170px;
-      position: absolute;
       bottom: 80px;
-      right: 40px;
+      right: 10px;
     }
 
     img.snare {
       width: 160px;
-      position: absolute;
       bottom: 150px;
     }
 
     img.tom1 {
       width: 140px;
-      position: absolute;
-      bottom: 270px;
+      bottom: 300px;
     }
 
     img.tom2 {
       width: 140px;
-      position: absolute;
-      bottom: 230px;
-      left: 200px
+      bottom: 260px;
+      left: 190px;
     }
 
     img.tom3 {
       width: 140px;
-      position: absolute;
-      bottom: 230px;
-      right: 200px
+      bottom: 260px;
+      right: 190px;
     }
 
-    img.ride-left {
+    img.crash {
       width: 170px;
-      position: absolute;
-      bottom: 250px;
-      left: 20px;
+      bottom: 280px;
+      left: 0px;
     }
 
-    img.ride-right {
+    img.ride {
       width: 170px;
-      position: absolute;
-      bottom: 250px;
-      right: 20px;
+      bottom: 280px;
+      right: 0px;
     }
 
     img.openhihat {
-      width: 140px;
-      position: absolute;
+      width: 120px;
       left: 50px;
-      bottom: 20px
+      bottom: 20px;
     }
 
     img.closehihat {
-      width: 140px;
-      position: absolute;
-      left: 90px;
-      bottom: 130px;
+      width: 120px;
+      left: 80px;
+      bottom: 150px;
     }
 
-    @media only screen and (min-width: 900px) {
-      div {
-        position: relative;
-        width: 825px;
-        height: 400px;
-        display: flex;
-        justify-content: center;
-        top: 100px;
-        margin: auto;
-      }
+    img.hit {
+      transform: scale(0.95);
     }
   </style>
 </head>
@@ -119,35 +107,54 @@
 <body>
 
   <div>
-    <img src="drums/kick.png" alt="kick" class="kick-left">
-    <img src="drums/kick.png" alt="kick" class="kick-right">
-    <img src="drums/boom.png" alt="boom" class="boom">
-    <img src="drums/snare.png" alt="snare" class="snare">
-    <img src="drums/tom.png" alt="tom" class="tom1">
-    <img src="drums/tom.png" alt="tom" class="tom2">
-    <img src="drums/tom.png" alt="tom" class="tom3">
-    <img src="drums/openhihat.png" alt="openhihat" class="openhihat">
-    <img src="drums/closehihat.png" alt="closehihat" class="closehihat">
-    <img src="drums/ride.png" alt="ride" class="ride-left">
-    <img src="drums/ride.png" alt="ride" class="ride-right">
+    <img src="drums/kick.png" class="kick-left 66">
+    <img src="drums/kick.png" class="kick-right 78">
+    <img src="drums/floor.png" class="floor 87 80">
+    <img src="drums/snare.png" class="snare 71 72">
+    <img src="drums/tom.png" class="tom1 70 74">
+    <img src="drums/tom.png" class="tom2 68 75">
+    <img src="drums/tom.png" class="tom3 83 76">
+    <img src="drums/openhihat.png" class="openhihat 81 219">
+    <img src="drums/closehihat.png" class="closehihat 65 186">
+    <img src="drums/crash.png" class="crash 82">
+    <img src="drums/ride.png" class="ride 85">
   </div>
 
-  <audio src=" sounds/kick.wav" id="kick"></audio>
-  <audio src=" sounds/snare.wav" id="snare"></audio>
-  <audio src=" sounds/boom.wav" id="boom"></audio>
-  <audio src=" sounds/ride.wav" id="ride"></audio>
-  <audio src=" sounds/tom.wav" id="tom"></audio>
-  <audio src=" sounds/closehihat.wav" id="closehihat"></audio>
-  <audio src=" sounds/openhihat.wav" id="openhihat"></audio>
+  <audio src=" sounds/kick.wav" id="kick" class="66 78"></audio>
+  <audio src=" sounds/floor.wav" id="boom" class="80 87"></audio>
+  <audio src=" sounds/snare.wav" id="snare" class="71 72"></audio>
+  <audio src=" sounds/tom.wav" id="tom" class="68 70 74 75 76 83"></audio>
+  <audio src=" sounds/closehihat.wav" id="closehihat" class="65 186"></audio>
+  <audio src=" sounds/openhihat.wav" id="openhihat" class="81 219"></audio>
+  <audio src=" sounds/closehihat.wav" id="closehihat" class="65 186"></audio>
+  <audio src=" sounds/crash.wav" id="ride" class="82"></audio>
+  <audio src=" sounds/ride.wav" id="ride" class="85"></audio>
 
   <script>
     function playSound(e) {
-      const audio = document.getElementById(e.target.alt);
-      if (!audio) return;
-      audio.currentTime = 0;
-      audio.play();
+      const keyCode = e.keyCode;
+      const audio = document.querySelectorAll('audio');
+      const img = document.querySelectorAll('img');
+
+      audio.forEach((e) => {
+        if (e.classList.contains(keyCode)) {
+          img.forEach((e) => {
+            if (e.classList.contains(keyCode)) e.classList.add('hit');
+          })
+          e.currentTime = 0;
+          e.play();
+
+        } else return
+      });
     }
-    window.addEventListener('click', playSound);
+
+    function removeTransition(e) {
+      e.target.classList.remove('hit');
+    }
+
+    const img = document.querySelectorAll('img');
+    img.forEach(e => addEventListener('transitionend', removeTransition));
+    window.addEventListener('keydown', playSound);
   </script>
 
 </body>
